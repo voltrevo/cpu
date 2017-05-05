@@ -3,9 +3,9 @@
 const Memory = require('./Memory');
 
 module.exports = ({
-  stateWidth,  // bytes of internal state
-  inputWidth,  // bytes of input
-  outputWidth, // bytes of output
+  stateWidth,  // words of internal state
+  inputWidth,  // words of input
+  outputWidth, // words of output
   calculate,   // (state, input, output) => void
   visualize,   // (state, input, output, viz) => void
 }) => ({

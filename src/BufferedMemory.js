@@ -3,8 +3,8 @@
 const assert = require('assert');
 
 module.exports = (n) => {
-  const getData = new Uint8Array(n);
-  const setData = new Uint8Array(n);
+  const getData = new Uint16Array(n);
+  const setData = new Uint16Array(n);
 
   const SubMemory = (begin, end) => {
     const memory = {};
