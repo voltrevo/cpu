@@ -1,6 +1,6 @@
 'use strict';
 
-const Memory = require('./Memory');
+const Memory = require('../Memory');
 
 module.exports = ({
   stateWidth,  // words of internal state
