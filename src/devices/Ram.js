@@ -4,18 +4,21 @@ const Template = require('./Template');
 
 module.exports = Template({
   stateWidth: 256 * 256,
-  inputWidth: 3,
+  inputWidth: 4,
   outputWidth: 1,
   calculate: (state, input, output) => {
-    const isRead = input(0) === 0;
-    const addr = input(1);
+    const readAddr = input(0);
+    output(0, state.get(readAddr));
 
-    if (isRead) {
-      output(0, state.get(addr));
-    } else {
-      const valueToWrite = input(2);
-      state.set(addr, valueToWrite);
+    const writeEnabled = input(1) !== 0;
+
+    if (!writeEnabled) {
+      return;
     }
+
+    const writeAddr = input(2);
+    const writeValue = input(3);
+    state.set(writeAddr, writeValue);
   },
   visualize: () => {},
 });
