@@ -3,7 +3,9 @@
 const assert = require('assert');
 
 module.exports = (n) => {
-  const SubMemory = (data, begin, end) => {
+  const data = new Uint8Array(n);
+
+  const SubMemory = (begin, end) => {
     const memory = {};
 
     assert(end >= begin);
@@ -16,7 +18,7 @@ module.exports = (n) => {
       assert(subBegin >= 0);
       assert(begin + subEnd <= end);
 
-      return SubMemory(data, begin + subBegin, begin + subEnd);
+      return SubMemory(begin + subBegin, begin + subEnd);
     };
 
     memory.Interface = (() => {
@@ -34,6 +36,5 @@ module.exports = (n) => {
     return memory;
   };
 
-  const data = new Uint8Array(n);
-  return SubMemory(data, 0, n);
+  return SubMemory(0, n);
 };
