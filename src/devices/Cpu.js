@@ -26,6 +26,12 @@ const POP_PROG = 15;       // Pop from the stack to PROG
 const POP_CND_EXEC = 16;   // Pop from the stack, and if zero, do an extra
                            // increment of PROG to skip next instruction
 
+// const PUSH_X = 32768..  // The top half of the instruction space is reserved
+                           // for literals. It means subtract 32768 from the
+                           // instruction value (ignore highest bit) and push
+                           // that onto the stack.
+                           // E.g. PUSH_0 is 32768, PUSH_5 is 32773, etc.
+
 module.exports = Template({
   stateWidth: (
     1 + // Ram/rom flag
@@ -101,6 +107,13 @@ module.exports = Template({
       case POP_CND_EXEC: {
         if (pop() === 0) {
           programCounter++;
+        }
+        break;
+      }
+
+      default: {
+        if (instruction > 32768) {
+          push(instruction - 32768);
         }
       }
     }
