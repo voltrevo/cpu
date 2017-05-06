@@ -17,7 +17,7 @@ module.exports = Template({
   ),
   outputWidth: (
     1 + // Rom input
-    5 + // Ram input
+    4 + // Ram input
     3 + // Alu input
     0   // TODO: CustomDevices input
   ),
