@@ -6,17 +6,18 @@ module.exports = Template({
   stateWidth: (
     1 + // Ram/rom flag
     1 + // Program counter
-    8   // Registers
+    1 + // Stack Ptr
+    8   // Stack
   ),
   inputWidth: (
     1 + // Rom output
-    1 + // Ram output
+    2 + // Ram output
     1 + // Alu output
     0   // TODO: CustomDevices output
   ),
   outputWidth: (
     1 + // Rom input
-    4 + // Ram input
+    5 + // Ram input
     3 + // Alu input
     0   // TODO: CustomDevices input
   ),
@@ -38,7 +39,7 @@ module.exports = Template({
       output(1, programCounter);
     }
 
-    output(2, writeRam);
+    output(4, writeRam);
     state.set(1, programCounter);
   },
   visualize: () => {},
