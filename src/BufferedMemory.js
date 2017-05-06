@@ -39,6 +39,6 @@ module.exports = (n) => {
 
   return {
     flush: () => { getData.set(setData); },
-    Memory: SubMemory(0, n),
+    memory: SubMemory(0, n),
   };
 };
