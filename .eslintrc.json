@@ -5,5 +5,10 @@
   "extends": "airbnb-base",
   "plugins": [
     "import"
-  ]
+  ],
+  "rules": {
+    "no-plusplus": 0,
+    "no-mixed-operators": 0,
+    "default-case": 0
+  }
 }
