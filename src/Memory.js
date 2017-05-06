@@ -21,7 +21,7 @@ module.exports = (n) => {
       return SubMemory(begin + subBegin, begin + subEnd);
     };
 
-    memory.Interface = (() => {
+    memory.Interface = () => {
       const sz = end - begin;
       // eslint-disable-next-line yoda
       const check = i => assert(0 <= i && i < sz);
@@ -31,7 +31,7 @@ module.exports = (n) => {
         // eslint-disable-next-line no-param-reassign
         set: (i, x) => { check(i); data[begin + i] = x; },
       };
-    })();
+    };
 
     return memory;
   };
