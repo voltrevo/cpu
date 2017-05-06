@@ -17,7 +17,7 @@ module.exports = ({
   }) => {
     const device = {};
 
-    const state = Memory(stateWidth);
+    const state = Memory(stateWidth).Interface();
 
     device.tick = () => calculate(state, input.get, output.set);
     device.visualize = viz => visualize(state.get, input.get, output.get, viz);
