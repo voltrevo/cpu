@@ -26,6 +26,8 @@ const POP_PROG = 15;       // Pop from the stack to PROG
 const POP_CND_EXEC = 16;   // Pop from the stack, and if zero, do an extra
                            // increment of PROG to skip next instruction
 
+const WAIT = 17;           // Do nothing this cycle
+
 // const PUSH_X = 32768+X  // The top half of the instruction space is reserved
                            // for literals. It means subtract 32768 from the
                            // instruction value (ignore highest bit) and push
@@ -85,11 +87,11 @@ module.exports = Template({
         break;
       }
 
-      case ADD: { output(3, 0); break; }
-      case MUL: { output(3, 1); break; }
-      case SUB: { output(3, 2); break; }
-      case DIV: { output(3, 3); break; }
-      case MOD: { output(3, 4); break; }
+      case ADD: { output(5, 0); break; }
+      case SUB: { output(5, 1); break; }
+      case MUL: { output(5, 2); break; }
+      case DIV: { output(5, 3); break; }
+      case MOD: { output(5, 4); break; }
 
       case PUSH_RAM: { push(input(2)); break; }
       case PUSH_ALU: { push(input(3)); break; }
@@ -108,6 +110,11 @@ module.exports = Template({
         if (pop() === 0) {
           programCounter++;
         }
+        break;
+      }
+
+      case WAIT: {
+        // Do nothing (program counter will still increment)
         break;
       }
 
